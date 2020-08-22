@@ -5,10 +5,13 @@ import {createStackNavigator} from 'react-navigation-stack'
 import Signup from '../Screens/Signup/SignupScreen'
 
 
-const AppNavigator = createStackNavigator({
+const AuthNavigator = createStackNavigator({
   Signup: {
     screen: Signup,
+    navigationOptions: {
+      headerShown: false
+    }
   },
 })
 
-export default createAppContainer(AppNavigator)
+export default createAppContainer(AuthNavigator)
