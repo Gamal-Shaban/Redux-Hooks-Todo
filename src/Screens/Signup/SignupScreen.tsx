@@ -2,8 +2,8 @@
 import React, { Component, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import styles from './SignupStyles'
-import Input from '../../Redux/Components/Input';
-import Button from '../../Redux/Components/Button';
+import Input from '../../Components/Input';
+import Button from '../../Components/Button';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet'
 
 
@@ -12,7 +12,7 @@ const Signup = () => {
     const actionSheetRef = useRef<ActionSheet | null>(null)
     return (
         <View style={styles.container}>
-            <Input />
+            <Input password />
             <Button title={'login'} onPress={() => {
                 const actionSheet = actionSheetRef.current
                 if (actionSheet) {
