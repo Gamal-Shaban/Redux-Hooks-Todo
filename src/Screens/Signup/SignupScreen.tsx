@@ -1,46 +1,82 @@
 //import liraries
-import React, { Component, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import React, { Component, useRef, Fragment } from 'react';
+import { View, TextInput, Image } from 'react-native';
 import styles from './SignupStyles'
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
-import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet'
-import ToDoItem from '../../Components/ToDoItem';
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+
+
+const defaultValues = {
+    userName: '',
+    password: ''
+}
 
 // create a component
 const Signup = () => {
-    const actionSheetRef = useRef<ActionSheet | null>(null)
+    const userNameRef = useRef<TextInput | null>(null)
+    const passwordRef = useRef<TextInput | null>(null)
 
-    const _renderItem = () => {
-       return <ToDoItem />
+    const validationSchema = Yup.object({
+        userName: Yup.string().required('required'),
+        password: Yup.string().required('required')
+
+    })
+
+    const onSubmit = (values) => {
+        console.log('values>>>', values);
     }
+
     return (
         <View style={styles.container}>
-            <Input password />
-            <Button title={'login'} onPress={() => {
-                const actionSheet = actionSheetRef.current
-                if (actionSheet) {
-                    actionSheet.show()
-                }
-            }} />
+            <Image source={require('../../Images/Logo.png')} style={styles.image} resizeMode={'contain'} />
 
-            <FlatList
-                renderItem={_renderItem}
-                data={[1, 2, 3]}
-            />
-            <ActionSheet
-                styles={{
-                    wrapper: {
-                        paddingBottom: 20
-                    }
-                }}
-                ref={actionSheetRef}
-                title={'Which one do you like ?'}
-                options={['Apple', 'Banana', 'cancel']}
-                cancelButtonIndex={2}
-                destructiveButtonIndex={1}
-                onPress={(index) => { /* do something */ }}
-            />
+            <Formik
+                initialValues={defaultValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
+                enableReinitialize
+            >
+                {({ handleChange, handleSubmit, touched, handleBlur, errors }) => (
+                    <Fragment>
+                        <Input
+                            containerStyle={styles.containerInputStyle}
+                            placeholder={'user name'}
+                            onChangeText={handleChange('userName')}
+                            errorText={errors.userName}
+                            onSubmitEditing={() => {
+                                passwordRef.current && passwordRef.current.focus()
+                            }
+                            }
+                            ref={userNameRef}
+                            onBlur={handleBlur('userName')}
+                            returnKeyType="next"
+                            touched={touched.userName}
+                        />
+                        <Input
+                            password
+                            containerStyle={[styles.containerInputStyle, { marginTop: 20 }]}
+                            placeholder={'password'}
+                            ref={passwordRef}
+                            onChangeText={handleChange('password')}
+                            errorText={errors.password}
+                            onSubmitEditing={() => {
+                                handleSubmit()
+                            }
+                            }
+                            onBlur={handleBlur('password')}
+                            returnKeyType="send"
+                            touched={touched.password}
+                        />
+
+                        <Button title={'login'} onPress={handleSubmit} />
+                    </Fragment>
+                )}
+            </Formik>
+
+            <Button title={'signUp'} containerStyle={styles.signupContainer}  textStyle={styles.signupTextStyle}/>
+
         </View>
     );
 };

@@ -14,7 +14,7 @@ const ToDoItem = (props: ToDOItemProps) => {
             style={{
                 alignSelf: 'center',
                 aspectRatio: 1,
-                flexDirection: 'column',
+                // flexDirection: 'column',
                 padding: 10,
                 backgroundColor: 'red',
                 borderRadius: 10,

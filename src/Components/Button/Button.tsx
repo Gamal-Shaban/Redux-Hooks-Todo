@@ -1,22 +1,23 @@
 //import liraries
 import React, { useState } from 'react';
-import { View, TextInput, Text, ActivityIndicator } from 'react-native';
+import { View, TextInput, Text, ActivityIndicator, TouchableOpacity,  TouchableOpacityProps, ViewStyle, TextStyle } from 'react-native';
 import styles from './ButtonStyles'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 type ButtonProps = {
     loading?: boolean,
-    title: string
+    title: string,
+    containerStyle: ViewStyle,
+    textStyle: TextStyle
 }
 
 const Button = (props: ButtonProps) => {
     return (
-        <TouchableOpacity style={styles.container} disabled={props.loading} {...props} >
+        <TouchableOpacity style={[styles.container , props.containerStyle ]} disabled={props.loading} {...props} >
             {
                 props.loading ?
                     <ActivityIndicator />
                     :
-                    <Text style={styles.title} >
+                    <Text style={[styles.title, props.textStyle]} >
                         {props.title}
                     </Text>
             }
