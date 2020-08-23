@@ -34,8 +34,8 @@ const AppNavigator = createStackNavigator({
 
 export default createAppContainer(
   createSwitchNavigator({
-    AuthNavigator,
     AppNavigator,
-
+    AuthNavigator,
+    
   })
 )

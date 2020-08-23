@@ -4,15 +4,14 @@ import { get_request, post_request, put_request, delete_request } from '../../..
 export const FetchNotes = () => {
     return async (dispatch) => {
         dispatch({ type: START_LOADING });
-        /**
-         * request go here--->
-         * const response = await get_request({ target: 'notes' })
-         * if (response) {
-         *     dispatch({ type: FETCH_NOTES, payload: response })
-         * }else{
-         *     toast('errorInConnection')
-         * }
-         *  */
+        
+         const response = await get_request({ target: 'todo/' })
+         if (response) {
+             dispatch({ type: FETCH_NOTES, payload: response })
+         }else{
+            //  toast('errorInConnection')
+         }
+          
         dispatch({ type: FETCH_NOTES, payload:[] });
         dispatch({ type: STOP_LOADING });
     }
