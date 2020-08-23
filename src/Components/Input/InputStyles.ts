@@ -15,6 +15,7 @@ export default StyleSheet.create({
     input:{
        flex: 1,
        alignSelf: 'stretch',
+       fontSize: 16
     },
     text:{
         fontSize: 14,

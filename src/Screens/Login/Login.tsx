@@ -1,12 +1,13 @@
 //import liraries
 import React, { Component, useRef, Fragment } from 'react';
 import { View, TextInput, Image } from 'react-native';
-import styles from './SignupStyles'
+import styles from './LoginStyles'
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from "react-navigation-hooks";
+
 
 
 const defaultValues = {
@@ -15,8 +16,8 @@ const defaultValues = {
 }
 
 // create a component
-const Signup = () => {
-    const { goBack } = useNavigation()
+const Login = () => {
+    const { navigate } = useNavigation()
     const userNameRef = useRef<TextInput | null>(null)
     const passwordRef = useRef<TextInput | null>(null)
 
@@ -71,18 +72,21 @@ const Signup = () => {
                             touched={touched.password}
                         />
 
-                        <Button title={'signup'} onPress={handleSubmit}  />
+                        <Button title={'login'} onPress={handleSubmit} />
                     </Fragment>
                 )}
             </Formik>
 
-            <Button title={'login'} containerStyle={styles.signupContainer}  textStyle={styles.signupTextStyle}
-            onPress={()=> goBack()}
-            />
+            <Button 
+                title={'signUp'} 
+                containerStyle={styles.signupContainer} 
+                textStyle={styles.signupTextStyle} 
+                onPress={()=>navigate('Signup')}
+                />
 
         </View>
     );
 };
 
 
-export default Signup;
+export default Login;

@@ -1,8 +1,7 @@
 //import liraries
 import React, { useState } from 'react';
-import { View, TextInput, Text, ActivityIndicator } from 'react-native';
-import styles from './InputStyles'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text, TextInput, View } from 'react-native';
+import styles from './InputStyles';
 
 type InputProps = {
     password?: boolean,
@@ -11,16 +10,16 @@ type InputProps = {
     error?: string
 }
 
-const Button = (props: InputProps) => {
+const InputComponent = (props: InputProps) => {
     const [showPassword, setShowPassword] = useState(false)
     return (
         <View>
             <View style={[styles.container, props.containerStyle]}>
-                <TextInput style={[styles.input, props.inputStyle]} secureTextEntry={showPassword} {...props} />
+                <TextInput style={[styles.input, props.inputStyle]} secureTextEntry={props.password ? !showPassword : false} {...props} />
                 {
                     props.password ?
                         <Text style={styles.text} onPress={() => setShowPassword(!showPassword)} >
-                            {showPassword ? 'show' : 'hide'  }
+                            {showPassword ? 'hide' : 'show'}
                         </Text>
                         : null
                 }
@@ -30,10 +29,12 @@ const Button = (props: InputProps) => {
                     <Text>
                         {props.error}
                     </Text>
-               : null
+                    : null
             }
         </View>
     );
 };
+const Input = React.forwardRef(InputComponent)
 
-export default Button;
+
+export default Input
