@@ -20,5 +20,12 @@ export default StyleSheet.create({
     text:{
         fontSize: 14,
         marginRight: 10
+    },
+    error:{
+        // flex: 1,
+        textAlign: 'right',
+        color: 'red',
+        marginTop: 3,
+        marginHorizontal: 5
     }
 });

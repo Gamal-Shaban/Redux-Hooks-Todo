@@ -16,7 +16,7 @@ const Button = (props: ButtonProps) => {
         <TouchableOpacity style={[styles.container, props.containerStyle]} disabled={props.loading} onPress={props.onPress} {...props} >
             {
                 props.loading ?
-                    <ActivityIndicator />
+                    <ActivityIndicator color={'white'} />
                     :
                     <Text style={[styles.title, props.textStyle]} >
                         {props.title}

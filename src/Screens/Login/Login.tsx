@@ -7,6 +7,8 @@ import Button from '../../Components/Button';
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useNavigation } from "react-navigation-hooks";
+import { useDispatch, useSelector } from 'react-redux';
+import { Login } from '../../redux/actions/User';
 
 
 
@@ -16,20 +18,24 @@ const defaultValues = {
 }
 
 // create a component
-const Login = () => {
+const LoginScreen = () => {
     const { navigate } = useNavigation()
+    const dispatch = useDispatch()
+    const loading = useSelector(state => state?.loading.loading)
+    const token = useSelector(state => state)
     const userNameRef = useRef<TextInput | null>(null)
     const passwordRef = useRef<TextInput | null>(null)
 
-    const validationSchema = Yup.object({
-        userName: Yup.string().required('required'),
+    const validation = Yup.object({
+        username: Yup.string().required('required'),
         password: Yup.string().required('required')
 
     })
 
-    const onSubmit = (values) => {
-        alert('dssf')
+    const onSubmit = (values: {username: string, password: string}) => {
+        dispatch(Login(values.username, values.password))
     }
+    console.log('token>>>', token);
 
     return (
         <View style={styles.container}>
@@ -37,7 +43,7 @@ const Login = () => {
 
             <Formik
                 initialValues={defaultValues}
-                validationSchema={validationSchema}
+                validationSchema={validation}
                 onSubmit={onSubmit}
                 enableReinitialize
             >
@@ -46,15 +52,16 @@ const Login = () => {
                         <Input
                             containerStyle={styles.containerInputStyle}
                             placeholder={'user name'}
-                            onChangeText={handleChange('userName')}
+                            onChangeText={handleChange('username')}
                             errorText={errors.userName}
                             onSubmitEditing={() => {
                                 passwordRef.current && passwordRef.current.focus()
                             }
                             }
-                            onBlur={handleBlur('userName')}
+                            onBlur={handleBlur('username')}
                             returnKeyType="next"
                             touched={touched.userName}
+                            error={errors.userName}
                         />
                         <Input
                             password
@@ -70,9 +77,10 @@ const Login = () => {
                             onBlur={handleBlur('password')}
                             returnKeyType="send"
                             touched={touched.password}
+                            error={errors.password}
                         />
 
-                        <Button title={'login'} onPress={handleSubmit} />
+                        <Button title={'login'} onPress={handleSubmit} loading={loading}  />
                     </Fragment>
                 )}
             </Formik>
@@ -89,4 +97,4 @@ const Login = () => {
 };
 
 
-export default Login;
+export default LoginScreen;

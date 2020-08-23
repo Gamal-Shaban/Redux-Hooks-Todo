@@ -15,7 +15,7 @@ const InputComponent = (props: InputProps) => {
     return (
         <View>
             <View style={[styles.container, props.containerStyle]}>
-                <TextInput style={[styles.input, props.inputStyle]} secureTextEntry={props.password ? !showPassword : false} {...props} />
+                <TextInput style={[styles.input, props.inputStyle]} autoCapitalize={false}  secureTextEntry={props.password ? !showPassword : false} {...props} />
                 {
                     props.password ?
                         <Text style={styles.text} onPress={() => setShowPassword(!showPassword)} >
@@ -26,7 +26,7 @@ const InputComponent = (props: InputProps) => {
             </View>
             {
                 props.error ?
-                    <Text>
+                    <Text style={styles.error} >
                         {props.error}
                     </Text>
                     : null

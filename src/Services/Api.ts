@@ -1,11 +1,11 @@
-const base_url = "http://test252.7agty.com";
+const base_url = "http://34.107.36.142";
 export const image_url = base_url;
 
 import AsyncStorage from '@react-native-community/async-storage';
 
 // get request
 export const get_request = async ({ target }) => {
-    const url = `${base_url}/api/en/${target}`
+    const url = `${base_url}/api/${target}`
 
     const access_token = await AsyncStorage.getItem('@TOKEN')
     console.log('access token>>>', access_token, url);
@@ -26,7 +26,7 @@ export const get_request = async ({ target }) => {
 
 // post request
 export const post_request = async ({ target, body = {} }) => {
-    const url = `${base_url}/api/en/${target}`;
+    const url = `${base_url}/api/${target}`;
     const access_token = await AsyncStorage.getItem('@TOKEN');
 
     try {
@@ -45,7 +45,7 @@ export const post_request = async ({ target, body = {} }) => {
 }
 
 export const put_request = async ({ target, body = {} }) => {
-    const url = `${base_url}/api/en/${target}`;
+    const url = `${base_url}/api/${target}`;
 
     console.log('body>>>', JSON.stringify(body));
     try {
@@ -65,7 +65,7 @@ export const put_request = async ({ target, body = {} }) => {
 
 
 export const delete_request = async ({ target }) => {
-    const url = `${base_url}/api/en/${target}`;
+    const url = `${base_url}/api/${target}`;
     console.log('url>>>', url);
 
     try {
