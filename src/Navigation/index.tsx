@@ -37,5 +37,6 @@ export default createAppContainer(
     AppNavigator,
     AuthNavigator,
     
-  })
+  },
+  )
 )

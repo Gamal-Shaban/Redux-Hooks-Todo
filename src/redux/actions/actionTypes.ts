@@ -14,3 +14,5 @@ export const DELETE_NOTE = 'DELETE_NOTE';
 
 export const LOGIN = 'LOGIN';
 export const SIGNUP = 'SIGNUP';
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
