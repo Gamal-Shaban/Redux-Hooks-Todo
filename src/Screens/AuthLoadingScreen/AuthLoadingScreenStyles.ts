@@ -5,9 +5,8 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     alignSelf: 'stretch',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    paddingTop: height * 0.1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   input: {
     height: 100,
