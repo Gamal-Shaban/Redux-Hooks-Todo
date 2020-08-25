@@ -1,22 +1,11 @@
-import { useNavigation } from '@react-navigation/native'
-import {
-  START_LOADING,
-  STOP_LOADING,
-  FETCH_NOTES,
-  EDIT_NOTE,
-  ADD_NOTE,
-  DELETE_NOTE,
-  LOGIN,
-  SIGNUP,
-  LOGOUT_SUCCESS,
-} from '../actionTypes'
-import {
-  get_request,
-  post_request,
-  put_request,
-  delete_request,
-} from '../../../Services/Api'
 import { Alert } from 'react-native'
+import { post_request } from '../../../Services/Api'
+import {
+  LOGIN,
+
+  LOGOUT_SUCCESS, SIGNUP, START_LOADING,
+  STOP_LOADING
+} from '../actionTypes'
 
 export const Signup = (username: string, password: string, navigation: any) => {
   return async dispatch => {
@@ -54,16 +43,32 @@ export const Signup = (username: string, password: string, navigation: any) => {
   }
 }
 
-export const Login = (username: string, password: string) => {
+export const Login = (username: string, password: string, navigate: any) => {
   return async dispatch => {
     dispatch({ type: START_LOADING })
     const response = await post_request({
       target: 'token/',
       body: { username, password },
     })
-    console.log('response>>>', response)
     dispatch({ type: STOP_LOADING })
+    if(response.refresh){
     dispatch({ type: LOGIN, payload: response })
+    navigate('AppNavigator')
+    }else {
+      Alert.alert(
+        '',
+        response.detail,
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              
+            },
+          },
+        ],
+        { cancelable: false },
+      )
+    }
   }
 }
 
@@ -72,7 +77,9 @@ export const logout = navigation => {
   return dispatch => {
     dispatch({ type: START_LOADING });
     dispatch({ type: LOGOUT_SUCCESS});
-    // navigation.navigate('Login')
+    navigation.navigate('AuthLoading')
+    dispatch({ type: STOP_LOADING })
+
 
   };
 };

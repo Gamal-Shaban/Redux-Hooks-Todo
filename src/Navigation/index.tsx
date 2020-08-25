@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import Signup from '../Screens/Signup/SignupScreen'
 import Login from '../Screens/Login'
 import Home from '../Screens/Home'
+import AuthLoadingScreen from '../Screens/AuthLoadingScreen'
 
 
 const AuthNavigator = createStackNavigator({
@@ -34,9 +35,13 @@ const AppNavigator = createStackNavigator({
 
 export default createAppContainer(
   createSwitchNavigator({
-    AppNavigator,
+    AuthLoading: AuthLoadingScreen,
     AuthNavigator,
+    AppNavigator,
     
   },
+    {
+      initialRouteName: 'AuthLoading',
+    }
   )
 )

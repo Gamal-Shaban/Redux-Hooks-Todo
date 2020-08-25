@@ -33,7 +33,7 @@ const LoginScreen = () => {
     })
 
     const onSubmit = (values: {username: string, password: string}) => {
-        dispatch(Login(values.username, values.password))
+        dispatch(Login(values.username, values.password, navigate))
     }
     console.log('token>>>', token);
 

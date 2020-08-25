@@ -1,4 +1,5 @@
-import { LOGOUT_SUCCESS, LOGIN } from '../../actions/actionTypes'
+import {LOGOUT_SUCCESS, LOGIN} from '../../actions/actionTypes'
+import AsyncStorage from '@react-native-community/async-storage'
 
 // set initial state
 const INITIALSTATE = {
@@ -7,11 +8,14 @@ const INITIALSTATE = {
 
 export default (state = INITIALSTATE, action) => {
   console.log('action>>>>>', action)
+  
   switch (action.type) {
     case LOGIN:
-      return { ...state, token: action.payload.access }
+      AsyncStorage.setItem('token', action.payload.access)
+      return {...state, token: action.payload.access}
     case LOGOUT_SUCCESS:
-      return { ...state, token: null }
+      AsyncStorage.removeItem('token')
+      return {...state, token: null}
     default:
       return state
   }

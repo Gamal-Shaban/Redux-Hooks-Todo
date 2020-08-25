@@ -181,7 +181,7 @@ const Home = ({navigation, FetchNotes, notes, EditNoteAction,logout}) => {
           />
         </TouchableOpacity>
       </View>
-      <Button title={'Logo Out'} containerStyle={{backgroundColor:'red'}} onPress={logout}/>
+      <Button title={'Logo Out'} containerStyle={{backgroundColor:'red'}} onPress={()=>logout(navigation)}/>
     </>
   );
 };
