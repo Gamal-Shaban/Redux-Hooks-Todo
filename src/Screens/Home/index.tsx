@@ -7,24 +7,29 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {FetchNotes, EditNoteAction} from '../../redux/actions/Home';
 import {COLORS, DEVICE_WIDTH} from '../../common';
 import styles from './styles';
-import {DeleteNote, AddNote} from './CrudNoteModals';
+import {DeleteNote, AddNote} from './CrudNoteModals/CrudNoteModals';
 import moment from 'moment';
 import AppIcon from '../../Components/AppIcon';
 import Button from '../../Components/Button';
 import { logout } from '../../redux/actions/User';
+import { useNavigation } from 'react-navigation-hooks';
 
-const Home = ({navigation, FetchNotes, notes, EditNoteAction,logout}) => {
+const Home = () => {
   const [type, setType] = useState('add');
+  const navigation = useNavigation()
   const [selectedNote, setSelectedNote] = useState({});
   const [filterNotes, setFilterNotes] = useState(notes);
   const [searchText, setSearchText] = useState('');
   const [AddNoteVisible, setAddNoteVisible] = useState(false);
   const [DeleteNoteVisible, setDeleteNoteVisible] = useState(false);
+  const notes = useSelector(state => state?.Home.notes)
+  const dispatch = useDispatch()
+  console.log('notes????', notes);
 
   useEffect(() => {
     // if we have real APIs we should call it..
@@ -42,7 +47,7 @@ const Home = ({navigation, FetchNotes, notes, EditNoteAction,logout}) => {
           </Text>
           <TouchableOpacity
             disabled={item.color == COLORS.green}
-            onPress={() => EditNoteAction({...item, color: COLORS.green})}
+            onPress={() => dispatch(EditNoteAction({...item, color: COLORS.green}))}
             style={[
               styles.colorButton,
               {backgroundColor: COLORS.green},
@@ -51,7 +56,7 @@ const Home = ({navigation, FetchNotes, notes, EditNoteAction,logout}) => {
           />
           <TouchableOpacity
             disabled={item.color == COLORS.pink}
-            onPress={() => EditNoteAction({...item, color: COLORS.pink})}
+            onPress={() => dispatch(EditNoteAction({...item, color: COLORS.pink}))}
             style={[
               styles.colorButton,
               {backgroundColor: COLORS.pink},
@@ -60,7 +65,7 @@ const Home = ({navigation, FetchNotes, notes, EditNoteAction,logout}) => {
           />
           <TouchableOpacity
             disabled={item.color == COLORS.orange}
-            onPress={() => EditNoteAction({...item, color: COLORS.orange})}
+            onPress={() => dispatch(EditNoteAction({...item, color: COLORS.orange}))}
             style={[
               styles.colorButton,
               {backgroundColor: COLORS.orange},
@@ -69,7 +74,7 @@ const Home = ({navigation, FetchNotes, notes, EditNoteAction,logout}) => {
           />
           <TouchableOpacity
             disabled={item.color == COLORS.blue}
-            onPress={() => EditNoteAction({...item, color: COLORS.blue})}
+            onPress={() => dispatch(EditNoteAction({...item, color: COLORS.blue}))}
             style={[
               styles.colorButton,
               {backgroundColor: COLORS.blue},
@@ -181,29 +186,10 @@ const Home = ({navigation, FetchNotes, notes, EditNoteAction,logout}) => {
           />
         </TouchableOpacity>
       </View>
-      <Button title={'Logo Out'} containerStyle={{backgroundColor:'red'}} onPress={()=>logout(navigation)}/>
+      <Button title={'Logo Out'} containerStyle={{backgroundColor:'red'}} onPress={()=>dispatch(logout(navigation))}/>
     </>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    // add reducer state here
-    notes: state.Home.notes,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    {
-      // add action fun here
-      FetchNotes,
-      EditNoteAction,
-      logout
-    },
-    dispatch,
-  );
-};
-
 // Header name and styles
 Home.navigationOptions = () => {
   return {
@@ -212,4 +198,4 @@ Home.navigationOptions = () => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home

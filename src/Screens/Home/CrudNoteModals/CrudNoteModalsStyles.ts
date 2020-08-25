@@ -1,0 +1,65 @@
+import { StyleSheet } from 'react-native'
+import { COLORS, DEVICE_HEIGHT as height, DEVICE_WIDTH as width, ICONS } from '../../../common';
+
+export default StyleSheet.create({
+    Modalcontainer:{
+        height:height,
+        width:width,
+        backgroundColor:'rgba(55,55,55,0.4)',
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    container:{
+        width:width*0.94,
+        borderRadius:width*0.02,
+        backgroundColor:COLORS.background,
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center',
+        paddingTop:height*0.04
+    },
+    close:{
+        position:'absolute',
+        top:width*0.01,
+        right:width*0.01,
+    },
+    actions:{
+        flexDirection:'row',
+        alignSelf:'flex-end',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    colorButton:{
+        width:width*0.06, 
+        height:width*0.06, 
+        margin:width*0.01, 
+        borderRadius:width*0.01,
+        borderWidth:width*0.005,
+        borderColor:'#FFF'
+    },
+    actionButton:{
+        backgroundColor:COLORS.main,
+        borderRadius:width*0.01,
+        paddingHorizontal:width*0.02,
+        paddingVertical:width*0.01,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    actionText:{
+        color:'#fff',
+        fontSize:width*0.035,
+    },
+    actionContainer:{
+        flexDirection:'row',
+        width:width*0.9,
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingBottom:width*0.01
+    },
+    deleteText:{
+        fontSize:width*0.04,
+        fontWeight:'bold',
+        margin:width*0.03,
+        paddingBottom:width*0.03
+    }
+});
