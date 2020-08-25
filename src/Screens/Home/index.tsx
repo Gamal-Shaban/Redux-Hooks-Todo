@@ -29,7 +29,6 @@ const Home = () => {
   const [DeleteNoteVisible, setDeleteNoteVisible] = useState(false);
   const notes = useSelector(state => state?.Home.notes)
   const dispatch = useDispatch()
-  console.log('notes????', notes);
 
   useEffect(() => {
     // if we have real APIs we should call it..
@@ -106,15 +105,10 @@ const Home = () => {
   };
 
   const _search = () => {
-    console.log(searchText);
     if (searchText == '') {
-      console.log('SHOULD RETURN EVERYTHING');
-      console.log(notes);
       setFilterNotes(notes);
     } else {
-      console.log('SHOULD RETURN SOMEDATA');
       let fn = notes.filter((n) => n.note.search(searchText) != -1);
-      console.log(fn);
       setFilterNotes(fn ? fn : []);
     }
   };

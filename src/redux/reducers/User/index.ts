@@ -6,9 +6,7 @@ const INITIALSTATE = {
   token: '',
 }
 
-export default (state = INITIALSTATE, action) => {
-  console.log('action>>>>>', action)
-  
+export default (state = INITIALSTATE, action) => {  
   switch (action.type) {
     case LOGIN:
       AsyncStorage.setItem('token', action.payload.access)

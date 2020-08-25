@@ -27,15 +27,14 @@ const LoginScreen = () => {
     const passwordRef = useRef<TextInput | null>(null)
 
     const validation = Yup.object({
-        username: Yup.string().required('required'),
+        userName: Yup.string().required('required'),
         password: Yup.string().required('required')
 
     })
 
-    const onSubmit = (values: {username: string, password: string}) => {
-        dispatch(Login(values.username, values.password, navigate))
+    const onSubmit = (values: {userName: string, password: string, navigate: any}) => {
+        dispatch(Login(values.userName, values.password, navigate))
     }
-    console.log('token>>>', token);
 
     return (
         <View style={styles.container}>
@@ -52,13 +51,13 @@ const LoginScreen = () => {
                         <Input
                             containerStyle={styles.containerInputStyle}
                             placeholder={'user name'}
-                            onChangeText={handleChange('username')}
+                            onChangeText={handleChange('userName')}
                             errorText={errors.userName}
                             onSubmitEditing={() => {
                                 passwordRef.current && passwordRef.current.focus()
                             }
                             }
-                            onBlur={handleBlur('username')}
+                            onBlur={handleBlur('userName')}
                             returnKeyType="next"
                             touched={touched.userName}
                             error={errors.userName}

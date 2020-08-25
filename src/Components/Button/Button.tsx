@@ -7,7 +7,7 @@ type ButtonProps = {
     loading?: boolean,
     title: string,
     containerStyle: ViewStyle,
-    textStyle: TextStyle,
+    textStyle?: TextStyle,
     onPress?: () => void
 }
 

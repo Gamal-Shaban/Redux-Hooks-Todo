@@ -18,7 +18,6 @@ const AddNote = ({ close, type, note }) => {
     });
 
     const _handleAction = () => {
-        console.log(type, note)
         if (type == 'add') {
             let data = {};
             data['id'] = '_' + Math.random().toString(36).substr(2, 9);

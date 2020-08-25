@@ -16,7 +16,6 @@ export const Signup = (username: string, password: string, navigation: any) => {
       target: 'register',
       body: { username, password },
     })
-    console.log('response>>>', response)
     if (response) {
       dispatch({ type: SIGNUP, payload: response })
       Alert.alert(
@@ -53,7 +52,7 @@ export const Login = (username: string, password: string, navigate: any) => {
     dispatch({ type: STOP_LOADING })
     if(response.refresh){
     dispatch({ type: LOGIN, payload: response })
-    navigate('AppNavigator')
+    navigate('Home')
     }else {
       Alert.alert(
         '',

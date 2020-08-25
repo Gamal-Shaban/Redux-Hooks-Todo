@@ -15,9 +15,6 @@ export default (state = INITIALSTATE, action) => {
             return { notes: action.payload };
         
         case ADD_NOTE:
-            console.log('ADD NOTE ')
-            console.log([action.payload, ...state.notes])
-            console.log('ADD NOTE ')
             return { notes: [action.payload, ...state.notes] };
         
         case EDIT_NOTE:{

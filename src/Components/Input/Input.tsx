@@ -15,7 +15,7 @@ const InputComponent = (props: InputProps) => {
     return (
         <View>
             <View style={[styles.container, props.containerStyle]}>
-                <TextInput style={[styles.input, props.inputStyle]} autoCapitalize={false}  secureTextEntry={props.password ? !showPassword : false} {...props} />
+                <TextInput style={[styles.input, props.inputStyle]} autoCapitalize={'none'}  secureTextEntry={props.password ? !showPassword : false} {...props} />
                 {
                     props.password ?
                         <Text style={styles.text} onPress={() => setShowPassword(!showPassword)} >

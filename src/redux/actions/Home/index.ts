@@ -18,9 +18,6 @@ export const FetchNotes = () => {
 }
 
 export const AddNoteAction = (data) => {
-    console.log("************* ADD NOTE DATA *************")
-    console.log(data)
-    console.log("************* ADD NOTE DATA *************")
     return async (dispatch) => {
         dispatch({ type: START_LOADING });
         /**
@@ -40,9 +37,6 @@ export const AddNoteAction = (data) => {
 }
 
 export const EditNoteAction = (data) => {
-    console.log("************* EDIT NOTE DATA *************")
-    console.log(data)
-    console.log("************* EDIT NOTE DATA *************")
     return async (dispatch) => {
         dispatch({ type: START_LOADING });
         /**
@@ -62,9 +56,6 @@ export const EditNoteAction = (data) => {
 }
 
 export const DeleteNoteAction = (id) => {
-    console.log("************* DELETE NOTE ID *************")
-    console.log(id)
-    console.log("************* DELETE NOTE ID *************")
     return async (dispatch) => {
         dispatch({ type: START_LOADING });
         /**

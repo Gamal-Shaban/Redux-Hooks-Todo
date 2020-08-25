@@ -8,7 +8,6 @@ export const get_request = async ({ target }) => {
     const url = `${base_url}/api/${target}`
 
     const access_token = await AsyncStorage.getItem('@TOKEN')
-    console.log('access token>>>', access_token, url);
     try {
         const result = await fetch(url,
             {
@@ -47,7 +46,6 @@ export const post_request = async ({ target, body = {} }) => {
 export const put_request = async ({ target, body = {} }) => {
     const url = `${base_url}/api/${target}`;
 
-    console.log('body>>>', JSON.stringify(body));
     try {
         const result = await fetch(url, {
             method: 'PUT',
@@ -66,7 +64,6 @@ export const put_request = async ({ target, body = {} }) => {
 
 export const delete_request = async ({ target }) => {
     const url = `${base_url}/api/${target}`;
-    console.log('url>>>', url);
 
     try {
         const result = await fetch(url, {

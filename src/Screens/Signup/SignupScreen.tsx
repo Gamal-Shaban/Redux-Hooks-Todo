@@ -51,12 +51,11 @@ const SignupScreen = () => {
                             containerStyle={styles.containerInputStyle}
                             placeholder={'user name'}
                             onChangeText={handleChange('username')}
-                            errorText={errors.username}
+                            error={errors.username}
                             onSubmitEditing={() => {
                                 passwordRef.current && passwordRef.current.focus()
                             }
                             }
-                            onBlur={handleBlur('username')}
                             returnKeyType="next"
                             touched={touched.username}
                         />
@@ -65,13 +64,12 @@ const SignupScreen = () => {
                             containerStyle={[styles.containerInputStyle, { marginTop: 20 }]}
                             placeholder={'password'}
                             onChangeText={handleChange('password')}
-                            errorText={errors.password}
+                            error={errors.password}
                             ref={passwordRef}
                             onSubmitEditing={() => {
                                 handleSubmit()
                             }
                             }
-                            onBlur={handleBlur('password')}
                             returnKeyType="send"
                             touched={touched.password}
                         />
