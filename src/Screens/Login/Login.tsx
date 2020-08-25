@@ -38,7 +38,7 @@ const LoginScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Image source={require('../../Images/Logo.png')} style={styles.image} resizeMode={'contain'} />
+            <Image source={require('../../Images/ToDoList.png')} style={styles.image} resizeMode={'contain'} />
 
             <Formik
                 initialValues={defaultValues}

@@ -13,8 +13,8 @@ export default StyleSheet.create({
     height: 100,
   },
   image: {
-    height: 50,
-    width: width / 2,
+    height: height / 7,
+    width: width/2,
     alignSelf: 'center',
   },
   containerInputStyle: {
